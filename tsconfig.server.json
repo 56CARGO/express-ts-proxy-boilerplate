@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "baseUrl": "server/",
+        "outDir": "dist/server",
+        "target": "es2015",
+        "module": "commonjs",
+        "sourceMap": true,
+        "importHelpers": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "include": [
+        "server/**/*"
+    ], 
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "express-ts-proxy-boilerplate",
+  "version": "0.0.0",
+  "scripts": {
+    "server:clean": "rimraf dist/server",
+    "server:dev:build": "tsc -p tsconfig.server.json && cross-env NODE_ENV=development node ./dist/server/app.js",
+    "server:proxy:build": "tsc -p tsconfig.server.json && cross-env NODE_ENV=development USE_PROXY=true node ./dist/server/app.js",
+    "server:build": "npm run server:clean && tsc -p tsconfig.server.json --sourceMap false --removeComments true",
+    "server:dev": "nodemon --watch server -e ts,json --exec \"npm run server:dev:build\"",
+    "server:proxy": "nodemon --watch server -e ts,json --exec \"npm run server:proxy:build\"",
+    "server": "cross-env NODE_ENV=development node ./dist/server/app.js"
+  },
+  "dependencies": {
+    "@types/http-proxy": "^1.17.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "http-proxy": "^1.17.0",
+    "http-proxy-agent": "^2.1.0",
+    "https-proxy-agent": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.0",
+    "@types/node": "~8.9.4",
+    "cross-env": "^5.2.0",
+    "log4js": "^4.5.1",
+    "nodemon": "^1.19.1",
+    "rimraf": "^2.6.3",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
+    "typescript": "~3.2.2"
+  }
+}
