@@ -20,9 +20,9 @@ export class GloablLogger {
             appenders: {
                 out: { type: 'stdout', layout },
                 outErr: {type: 'stderr', layout: stdErrLayout },
-                fileInfoAppender: { type: 'dateFile', filename: 'logs/infos/info.log', layout },
-                errorFileAppender: { type: 'dateFile', filename: 'logs/errors/error.log', layout },
-                fatalFileAppender: { type: 'dateFile', filename: 'logs/fatals/fatal.log', layout }
+                fileInfoAppender: { type: 'dateFile', filename: 'logs/infos/info.log', keepFileExt: true, layout },
+                errorFileAppender: { type: 'dateFile', filename: 'logs/errors/error.log', keepFileExt: true, layout },
+                fatalFileAppender: { type: 'dateFile', filename: 'logs/fatals/fatal.log', keepFileExt: true, layout }
             },
             categories: {
                 default: { appenders: ['fileInfoAppender'], level: 'info' },

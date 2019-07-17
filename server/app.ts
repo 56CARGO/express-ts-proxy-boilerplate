@@ -1,5 +1,6 @@
 import { AppConfigs } from './configs/app.config';
 import * as express from 'express';
+import { Handler } from 'express';
 import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
@@ -20,14 +21,13 @@ GloablLogger.initialize();
 // 处理文件下载的请求
 app.use('/file/download', new DownloadMiddleware().config());
 
-// 请求json化
-app.use(bodyParser.json({ limit: '50mb' }));
 // 启用gzip压缩
-app.use(compression());
+app.use(compression() as Handler);
+
 // Api请求
-app.use('/api', new ApiMiddleware().config());
-// Api请求错误处理
-app.use(new ApiErrorHandlingMiddleware().config());
+app.use('/api', bodyParser.json({ limit: '50mb' }),
+                new ApiMiddleware().config(),
+                new ApiErrorHandlingMiddleware().config());
 
 
 // 为响应头添加cache-control，启用http缓存
